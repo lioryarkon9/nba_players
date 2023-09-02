@@ -14,7 +14,7 @@ interface IProps {
   backgroundColor: TFavoritePlayersBackgroundColor;
 }
 
-const FavoritePlayersContainer: React.FC<IProps> = ({
+const Container: React.FC<IProps> = ({
   players,
   backgroundColor,
 }) => {
@@ -36,5 +36,5 @@ const mapStateToProps = (state: IState) => ({
 });
 
 export const FavoritePlayers = connect(mapStateToProps)(
-  FavoritePlayersContainer
+  Container
 );

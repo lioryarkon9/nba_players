@@ -11,7 +11,7 @@ interface IProps {
   filterText: IState["filterText"];
 }
 
-const AllPlayersContainer: React.FC<IProps> = ({ players, filterText }) => {
+const Container: React.FC<IProps> = ({ players, filterText }) => {
   const allPlayers = React.useMemo(
     () =>
       players?.filter((player) => {
@@ -39,4 +39,4 @@ const mapStateToProps = (state: IState) => ({
   filterText: filterTextSelector(state),
 });
 
-export const AllPlayers = connect(mapStateToProps)(AllPlayersContainer);
+export const AllPlayers = connect(mapStateToProps)(Container);
