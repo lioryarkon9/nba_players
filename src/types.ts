@@ -20,18 +20,21 @@ export interface IPlayer {
   isFavorite?: boolean;
 }
 
-export type TUIMode = "MOBILE" | "DESKTOP";
+export type TFavoritePlayersBackgroundColor = "inherit" | "blue" | "red";
 
 export interface IState {
   players: IPlayer[] | null;
+  filterText: string;
   ui: {
-    mode: TUIMode;
+    favoritePlayersBackgroundColor: TFavoritePlayersBackgroundColor;
   };
 }
 
 export type TAction = {
   type: string;
-  payload: any;
+  payload?: any;
 };
 
 export type TPlayerAction = (playerId: IPlayer["id"]) => TAction;
+
+export type TChangeFavoritePlayersBacgkroundColor = () => TAction;

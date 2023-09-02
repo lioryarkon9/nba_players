@@ -2,7 +2,9 @@ import { applyGlobalStyle } from "../styles.config";
 import { styled } from "../styles.config";
 
 import { AllPlayers } from "./AllPlayers";
+import { ChangeFavoritesBackgroundColor } from "./ChangeFavoritesBackgroundColor";
 import { FavoritePlayers } from "./FavoritePlayers";
+import { FilterPlayers } from "./FilterPlayers";
 import { InitPlayers } from "./InitPlayers";
 
 function App() {
@@ -11,7 +13,18 @@ function App() {
       {applyGlobalStyle()}
       <InitPlayers />
       <PageContainer>
-        <ActionsPanel>actions</ActionsPanel>
+        <ActionsSection>
+          <PlayersActions>
+            <div>
+              <FilterPlayers />
+            </div>
+          </PlayersActions>
+          <PlayersActions>
+            <div>
+              <ChangeFavoritesBackgroundColor />
+            </div>
+          </PlayersActions>
+        </ActionsSection>
         <PlayersSection>
           <PlayersContainer>
             <AllPlayers />
@@ -29,20 +42,31 @@ const ACTIONS_PANEL_HEIGHT = 7;
 const PLAYERS_SECTION_HEIGHT = 100 - ACTIONS_PANEL_HEIGHT;
 
 const PlayersSection = styled("div", {
+  overflowY: "auto",
   height: `${PLAYERS_SECTION_HEIGHT}%`,
+  display: "flex",
   "@desktop": {
-    display: "flex",
+    flexWrap: "nowrap",
   },
   "@mobile": {
-    display: "block",
+    flexWrap: "wrap",
   },
 });
 
-const ActionsPanel = styled("div", {
+const PlayersActions = styled("div", {
+  width: "50%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
+const ActionsSection = styled("div", {
   height: `${ACTIONS_PANEL_HEIGHT}%`,
+  display: "flex",
 });
 
 const PlayersContainer = styled("div", {
+  height: "100%",
   border: "1px solid",
   "@desktop": {
     width: "50%",
@@ -55,7 +79,6 @@ const PlayersContainer = styled("div", {
 const PageContainer = styled("div", {
   height: "100vh",
   width: "100vw",
-  backgroundColor: "yellow",
 });
 
 export default App;
