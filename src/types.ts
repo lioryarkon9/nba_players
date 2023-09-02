@@ -1,5 +1,3 @@
-import { type } from "os";
-
 interface ITeam {
   id: number;
   abbreviation: string;
@@ -22,12 +20,6 @@ export interface IPlayer {
   isFavorite?: boolean;
 }
 
-export interface IPlayerAction {
-  function: (playerId: IPlayer["id"]) => void;
-  name: string;
-  isEnabled: (playerId: IPlayer["id"]) => boolean;
-}
-
 export type TUIMode = "MOBILE" | "DESKTOP";
 
 export interface IState {
@@ -41,3 +33,5 @@ export type TAction = {
   type: string;
   payload: any;
 };
+
+export type TPlayerAction = (playerId: IPlayer["id"]) => TAction;

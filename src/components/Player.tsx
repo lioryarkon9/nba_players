@@ -1,15 +1,18 @@
+import { connect } from "react-redux";
 import React from "react";
 
-import { IPlayer } from "../types";
+import { IPlayer, TPlayerAction } from "../types";
 import { styled } from "../styles.config";
+import { toggleFavorite } from "../state";
 
 interface IProps {
   player: IPlayer;
+  toggleFavorite: TPlayerAction;
 }
 
-export const Player: React.FC<IProps> = ({ player }) => {
-  const { isFavorite, first_name, last_name } = player;
-  const buttonLabel = isFavorite ? "unfavorite" : "make favorite";
+const PlayerContainer: React.FC<IProps> = ({ player, toggleFavorite }) => {
+  const { isFavorite, first_name, last_name, id } = player;
+  const label = isFavorite ? "Remove from Favorites" : "Add to Favorites";
 
   return (
     <Container>
@@ -17,7 +20,7 @@ export const Player: React.FC<IProps> = ({ player }) => {
         {first_name} {last_name}
       </div>
       <div>
-        <button>{buttonLabel}</button>
+        <button onClick={() => toggleFavorite(id)}>{label}</button>
       </div>
     </Container>
   );
@@ -27,3 +30,5 @@ const Container = styled("div", {
   display: "flex",
   justifyContent: "space-between",
 });
+
+export const Player = connect(null, { toggleFavorite })(PlayerContainer);

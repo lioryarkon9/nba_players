@@ -1,8 +1,9 @@
 import { applyGlobalStyle } from "../styles.config";
 import { styled } from "../styles.config";
 
-import { InitPlayers } from "./InitPlayers";
 import { AllPlayers } from "./AllPlayers";
+import { FavoritePlayers } from "./FavoritePlayers";
+import { InitPlayers } from "./InitPlayers";
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
           <PlayersContainer>
             <AllPlayers />
           </PlayersContainer>
-          <PlayersContainer>PlayersContainer2</PlayersContainer>
+          <PlayersContainer>
+            <FavoritePlayers />
+          </PlayersContainer>
         </PlayersSection>
       </PageContainer>
     </>

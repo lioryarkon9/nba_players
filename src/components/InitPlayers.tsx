@@ -15,7 +15,7 @@ const PlayersContainer: React.FC<IProps> = ({ setPlayers }) => {
       .then((jsonResult) => {
         setPlayers(jsonResult.data);
       });
-  }, []);
+  }, [setPlayers]);
 
   return null;
 };

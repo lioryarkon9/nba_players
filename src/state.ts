@@ -16,6 +16,23 @@ function reducer(state: IState = INITIAL_STATE, action: TAction): IState {
         ...state,
         players: action.payload.players,
       };
+    case "TOGGLE_FAVORITE":
+      if (!state.players) {
+        return state;
+      }
+
+      const updatedPlayers = state.players.map((player) => {
+        if (player.id === action.payload.playerId) {
+          return { ...player, isFavorite: !player.isFavorite };
+        }
+
+        return player;
+      });
+
+      return {
+        ...state,
+        players: updatedPlayers,
+      };
     default:
       return state;
   }
@@ -24,6 +41,11 @@ function reducer(state: IState = INITIAL_STATE, action: TAction): IState {
 export const setPlayers = (players: IPlayer[]) => ({
   type: "SET_PLAYERS",
   payload: { players },
+});
+
+export const toggleFavorite = (playerId: IPlayer["id"]) => ({
+  type: "TOGGLE_FAVORITE",
+  payload: { playerId },
 });
 
 export const playersSelector = ({ players }: IState) => players;
